@@ -1,0 +1,245 @@
+/* Final visual pass for the impact proof and public-location map. */
+.stat-card {
+  color: white;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.stat-card small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, .62);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.impact-stat-image {
+  background: var(--light-blue);
+}
+
+.impact-stat-image img {
+  display: block;
+  background: var(--light-blue);
+  object-position: center;
+}
+
+.map-detail-card h3 {
+  max-width: 100%;
+  margin: 14px 0 10px;
+  font-size: clamp(27px, 3vw, 34px);
+}
+
+.map-detail-address {
+  color: rgba(255, 255, 255, .88) !important;
+  font-size: 12px !important;
+}
+
+.map-detail-fields {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.map-detail-fields span {
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .72);
+  font-size: 9px;
+}
+
+.map-detail-image-wrap {
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 13px;
+}
+
+.map-detail-image-wrap img {
+  width: 100%;
+  max-height: 150px;
+  display: block;
+  object-fit: cover;
+}
+
+.map-detail-link {
+  width: fit-content;
+  margin-top: 18px;
+}
+
+.impact-pin {
+  color: white;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.impact-pin::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 21px;
+  left: 50%;
+  min-width: max-content;
+  padding: 6px 8px;
+  border-radius: 7px;
+  color: var(--navy);
+  background: white;
+  box-shadow: 0 8px 22px rgba(16, 42, 67, .14);
+  opacity: 0;
+  pointer-events: none;
+  font-size: 10px;
+  font-weight: 750;
+  transform: translate(-50%, 4px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.impact-pin:hover::after,
+.impact-pin:focus-visible::after,
+.impact-pin.is-selected::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 760px) {
+  .map-detail-card h3 {
+    font-size: 29px;
+  }
+
+  .impact-pin::after {
+    display: none;
+  }
+}
+
+/* Real imagery map: hybrid is the default, with a quiet provider toggle. */
+.map-canvas {
+  height: 390px;
+  min-height: 390px;
+  background: #eaf7fc;
+}
+
+.map-canvas::before,
+.map-canvas::after,
+.map-grid-line,
+.map-label {
+  display: none;
+}
+
+.map-canvas.is-real-map {
+  padding: 0;
+  overflow: hidden;
+  background: #dfe8ed;
+}
+
+.map-canvas.is-real-map .map-empty-state {
+  display: none;
+}
+
+.leaflet-container {
+  height: 100%;
+  min-height: 100%;
+  border-radius: inherit;
+  color: var(--navy);
+  background: #dfe8ed;
+  font-family: var(--sans);
+}
+
+.leaflet-control-zoom,
+.leaflet-control-layers {
+  overflow: hidden;
+  border: 1px solid rgba(16, 42, 67, .16) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(16, 42, 67, .14) !important;
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-layers-toggle {
+  color: var(--navy) !important;
+  background: rgba(255, 253, 249, .94) !important;
+}
+
+.leaflet-control-zoom a {
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 30px !important;
+  border-bottom-color: rgba(16, 42, 67, .12) !important;
+}
+
+.leaflet-control-layers-toggle {
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 10px 12px;
+  color: var(--navy);
+  background: rgba(255, 253, 249, .96);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.leaflet-control-layers-selector {
+  accent-color: var(--blue);
+}
+
+.mochi-map-pin {
+  width: 24px !important;
+  height: 24px !important;
+  margin: -12px 0 0 -12px;
+  border: 0;
+  background: transparent;
+}
+
+.mochi-map-pin-dot {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 4px;
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(40, 120, 181, .28), 0 4px 10px rgba(16, 42, 67, .28);
+  transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.mochi-map-pin:hover .mochi-map-pin-dot,
+.mochi-map-pin:focus-visible .mochi-map-pin-dot,
+.mochi-map-pin.is-selected .mochi-map-pin-dot {
+  background: var(--navy);
+  box-shadow: 0 0 0 6px rgba(92, 174, 226, .36), 0 5px 13px rgba(16, 42, 67, .32);
+  transform: scale(1.08);
+}
+
+.leaflet-tooltip {
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--navy);
+  background: var(--cream);
+  box-shadow: 0 8px 22px rgba(16, 42, 67, .14);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.leaflet-tooltip-top::before {
+  border-top-color: var(--cream);
+}
+
+.leaflet-control-attribution {
+  color: rgba(16, 42, 67, .7);
+  background: rgba(255, 253, 249, .78) !important;
+  font-size: 9px;
+}
+
+.leaflet-control-attribution a {
+  color: var(--navy);
+}
+
+@media (max-width: 760px) {
+  .map-canvas {
+    height: 330px;
+    min-height: 330px;
+  }
+
+  .leaflet-control-layers-expanded {
+    font-size: 10px;
+  }
+}
