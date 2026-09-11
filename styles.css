@@ -676,3 +676,15 @@ button { cursor: pointer; }
   .team-preview-card h3 { font-size: 21px; }
   .team-preview-card span { font-size: 9px; }
 }
+
+/* Let touch scrolling follow the user's gesture instead of snapping to sections. */
+@media (max-width: 900px), (pointer: coarse) {
+  html.homepage { scroll-snap-type: none; scroll-behavior: auto; }
+  html.homepage main > section { scroll-snap-align: none; scroll-snap-stop: normal; }
+}
+
+/* Changing sticky header height during a swipe shifts the document underneath it. */
+@media (max-width: 900px) {
+  .site-header, .site-header.is-scrolled { padding: 10px 12px; }
+  .nav-shell, .site-header.is-scrolled .nav-shell { padding-top: 6px; padding-bottom: 6px; }
+}
