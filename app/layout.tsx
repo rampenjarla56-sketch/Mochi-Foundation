@@ -15,7 +15,10 @@ export default function RootLayout({
       <body>
         <nav style={{ background: 'white', borderBottom: '1px solid #DDF4FB', padding: '1rem 0', position: 'sticky', top: 0, zIndex: 50 }}>
           <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h1 style={{ fontSize: '1.5rem', color: '#245D75', margin: 0 }}>MOCHI 🐾</h1>
+            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
+              <img src="/images/mochi-logo.jpg" alt="The Mochi Foundation logo" width={40} height={40} style={{ borderRadius: '0.5rem', display: 'block' }} />
+              <h1 style={{ fontSize: '1.5rem', color: '#245D75', margin: 0 }}>MOCHI</h1>
+            </a>
             <div style={{ display: 'flex', gap: '2rem', fontSize: '0.9rem' }}>
               <a href="/" style={{ textDecoration: 'none', color: '#15252E' }}>Home</a>
               <a href="/get-support" style={{ textDecoration: 'none', color: '#15252E' }}>Get Support</a>

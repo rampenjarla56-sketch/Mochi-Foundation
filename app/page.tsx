@@ -14,8 +14,8 @@ export default function Home() {
                 <a href="/chapters" className="btn btn-secondary">Partner With Mochi</a>
               </div>
             </div>
-            <div style={{ background: 'linear-gradient(to bottom right, #DDF4FB, #E5F3E3)', aspectRatio: '1', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#15252E', textAlign: 'center', padding: '2rem' }}>
-              <p>🐕 Hero Image</p>
+            <div style={{ background: 'linear-gradient(to bottom right, #DDF4FB, #E5F3E3)', aspectRatio: '1', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+              <img src="/images/mochi-logo.jpg" alt="Mochi, a Shih Tzu carrying a bone" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '0.75rem' }} />
             </div>
           </div>
         </div>
