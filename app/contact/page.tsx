@@ -68,7 +68,7 @@ export default function Contact() {
           {[
             { q: 'How do I request pet support?', a: 'Visit our Get Support page to submit a request form.' },
             { q: 'How do I start a chapter?', a: 'Go to the Chapters page and apply to start a local chapter.' },
-            { q: 'Can I volunteer?', a: 'Yes! Contact us with your volunteer inquiry and we'll get back to you.' },
+            { q: 'Can I volunteer?', a: "Yes! Contact us with your volunteer inquiry and we'll get back to you." },
             { q: 'Is Mochi a 501(c)(3)?', a: 'We are a youth-led community initiative. Contact us for more details.' },
           ].map((faq, i) => (
             <div key={i} style={{ marginBottom: '2rem' }}>
