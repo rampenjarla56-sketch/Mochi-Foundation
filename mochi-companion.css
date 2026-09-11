@@ -1,0 +1,58 @@
+/* A small, optional companion. The surrounding overlay never intercepts clicks. */
+.mochi-companion { position: fixed; inset: auto 0 0; height: 180px; z-index: 19; pointer-events: none; --dog-width: 94px; font-family: inherit; }
+.mochi-wander { position: absolute; bottom: max(12px, env(safe-area-inset-bottom)); left: 12px; width: var(--dog-width); animation: mochi-stroll 36s linear infinite alternate; }
+.mochi-pet { position: relative; display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.mochi-dog { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 5px 5px #102a4310); }
+.mochi-head { transform-origin: 112px 90px; animation: mochi-nod 1s ease-in-out infinite alternate; }
+.mochi-tail { transform-origin: 46px 82px; animation: mochi-wag .28s ease-in-out infinite alternate; }
+.mochi-leg { transform-box: fill-box; transform-origin: top center; animation: mochi-step .5s ease-in-out infinite alternate; }
+.mochi-leg-front { animation-delay: -.5s; }
+.mochi-message { position: absolute; bottom: 100%; left: 0; width: 165px; padding: 10px 13px; color: #24475A; background: #fffdf9; border: 1px solid #d9e9e9; border-radius: 15px 15px 15px 3px; box-shadow: 0 6px 24px #102a4310; font-size: 12px; line-height: 1.4; font-weight: 600; opacity: 0; transform: translateY(5px); transition: opacity .2s, transform .2s; }
+.mochi-wander:hover .mochi-message, .mochi-wander:focus-within .mochi-message, .is-loved .mochi-message { opacity: 1; transform: translateY(0); }
+.mochi-companion button:focus-visible { outline: 3px solid #2878b5; outline-offset: 3px; border-radius: 18px; }
+.mochi-hearts { position: absolute; left: 60%; top: 12%; color: #db7680; font-size: 26px; opacity: 0; pointer-events: none; }
+.is-loved .mochi-hearts { animation: mochi-love 1.5s ease-out; }
+.is-loved .mochi-tail { animation-duration: .12s; }
+.mochi-wander:focus-within, .is-paused .mochi-wander, .is-loved .mochi-wander, .is-away .mochi-wander { animation-play-state: paused; }
+.is-paused .mochi-dog *, .is-away .mochi-dog * { animation-play-state: paused; }
+@keyframes mochi-stroll { from { transform: translateX(0); } to { transform: translateX(max(0px, calc(100vw - 360px))); } }
+@keyframes mochi-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }
+@keyframes mochi-nod { from { transform: rotate(-3deg) translateY(0); } to { transform: rotate(2deg) translateY(2px); } }
+@keyframes mochi-step { from { transform: rotate(-13deg); } to { transform: rotate(13deg); } }
+@keyframes mochi-love { 0% { opacity: 0; transform: translateY(0) scale(.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-55px) scale(1.3); } }
+@media (max-width: 600px) {
+  .mochi-companion { --dog-width: 76px; }
+  .mochi-wander { animation-duration: 18s; }
+  .mochi-message { width: 145px; font-size: 11px; }
+  @keyframes mochi-stroll { from { transform: translateX(0); } to { transform: translateX(max(0px, calc(100vw - 260px))); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mochi-companion *, .mochi-companion *::before, .mochi-companion *::after { animation: none !important; transition: none !important; }
+  .is-loved .mochi-hearts { opacity: 1; }
+}
+@media print { .mochi-companion { display: none; } }
+
+/* Mochi walks along a quiet rail directly below the navigation. */
+.mochi-companion { inset: var(--mochi-nav-bottom, 100px) 0 auto; height: 72px; --dog-width: 76px; z-index: 19; }
+.mochi-companion::before { content: ""; position: absolute; top: 62px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #a8cdd5 12%, #a8cdd5 88%, transparent); }
+.mochi-wander { top: -1px; bottom: auto; animation: mochi-rail-walk 32s linear infinite; }
+.mochi-message { top: 100%; bottom: auto; border-radius: 3px 15px 15px 15px; }
+@keyframes mochi-rail-walk { 0% { transform: translateX(-105px); } 100% { transform: translateX(calc(100vw + 10px)); } }
+@media (max-width: 600px) {
+  .mochi-companion { height: 57px; --dog-width: 60px; }
+  .mochi-companion::before { top: 49px; }
+  .mochi-wander { animation-duration: 22s; }
+}
+
+/* A zero-height document anchor overlays the hero and scrolls naturally.
+   It never measures the sticky navbar's changing viewport position. */
+.mochi-companion { position: relative; inset: auto; width: 100%; height: 0; overflow: visible; background: transparent; }
+.mochi-message { top: calc(100% + 10px); bottom: auto; left: 0; border-radius: 3px 15px 15px 15px; }
+.mochi-wander:hover { animation-play-state: paused; }
+.mochi-companion::before { background: linear-gradient(90deg, transparent, rgba(168,205,213,.65) 12%, rgba(168,205,213,.65) 88%, transparent); }
+@keyframes mochi-rail-walk {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  96% { opacity: 1; }
+  100% { transform: translateX(max(0px, calc(100vw - 190px))); opacity: 0; }
+}
